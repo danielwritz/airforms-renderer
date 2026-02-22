@@ -1,72 +1,12 @@
-export type PrimitiveValue = string | number | boolean | null
-export type FieldValue = PrimitiveValue | Record<string, unknown>
+import type { UiComponent, UiFrame, UiSubmit } from '@airforms/protocol'
 
-export interface BaseComponent {
-  id: string
-  type: string
-  label: string
-  required?: boolean
-}
+export type { UiComponent, UiFrame, UiSubmit }
 
-export interface TextComponent extends BaseComponent {
-  type: 'text' | 'textarea' | 'date'
-  placeholder?: string
-}
+export type FieldValue = UiSubmit['values'][string]
 
-export interface NumberComponent extends BaseComponent {
-  type: 'number'
-  min?: number
-  max?: number
-  step?: number
-}
-
-export interface SelectComponent extends BaseComponent {
-  type: 'select'
-  options: Array<{ label: string; value: string }>
-}
-
-export interface SliderComponent extends BaseComponent {
-  type: 'slider'
-  min: number
-  max: number
-  step?: number
-}
-
-export interface MapPinComponent extends BaseComponent {
-  type: 'map_pin'
-}
-
-export interface ReviewComponent extends BaseComponent {
-  type: 'review'
-}
-
-export type UiComponent =
-  | TextComponent
-  | NumberComponent
-  | SelectComponent
-  | SliderComponent
-  | MapPinComponent
-  | ReviewComponent
-
-export type UiAction = { type: 'ui_submit' } | { type: 'ui_back' } | { type: 'ui_replace' }
-
-export interface UiFrame {
-  type: 'ui_frame'
-  version: string
-  frameId: string
-  title?: string
-  state?: {
-    values?: Record<string, FieldValue>
-  }
-  components: UiComponent[]
-  primaryAction: {
-    label: string
-    action: UiAction
-  }
-}
-
-export interface UiSubmit {
-  type: 'ui_submit'
-  frameId: string
-  values: Record<string, FieldValue>
-}
+export type TextComponent = Extract<UiComponent, { type: 'text' | 'textarea' | 'date' }>
+export type NumberComponent = Extract<UiComponent, { type: 'number' }>
+export type SelectComponent = Extract<UiComponent, { type: 'select' }>
+export type SliderComponent = Extract<UiComponent, { type: 'slider' }>
+export type MapPinComponent = Extract<UiComponent, { type: 'map_pin' }>
+export type ReviewComponent = Extract<UiComponent, { type: 'review' }>

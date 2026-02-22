@@ -12,6 +12,8 @@ const baseFrame: UiFrame = {
   state: { values: {} },
   components: [
     { id: 'policyNumber', type: 'text', label: 'Policy number', required: true },
+    { id: 'notes', type: 'textarea', label: 'Notes' },
+    { id: 'claimCount', type: 'number', label: 'Claims', min: 0, max: 10 },
     { id: 'dob', type: 'date', label: 'Date of birth', required: true },
     {
       id: 'channel',
@@ -23,13 +25,28 @@ const baseFrame: UiFrame = {
         { label: 'Phone', value: 'phone' }
       ]
     },
-    { id: 'score', type: 'slider', label: 'Score', min: 0, max: 10, step: 2 }
+    { id: 'score', type: 'slider', label: 'Score', min: 0, max: 10, step: 2 },
+    { id: 'location', type: 'map_pin', label: 'Location' },
+    { id: 'review', type: 'review', label: 'Review' }
   ],
   primaryAction: { label: 'Look up', action: { type: 'ui_submit' } }
 }
 
 describe('ChatUIRenderer', () => {
-  it('submits valid values (happy path)', async () => {
+  it('renders v0 component types', () => {
+    render(<ChatUIRenderer frame={baseFrame} onSubmit={vi.fn()} />)
+
+    expect(screen.getByLabelText('Policy number')).toBeInTheDocument()
+    expect(screen.getByLabelText('Notes')).toBeInTheDocument()
+    expect(screen.getByLabelText('Claims')).toBeInTheDocument()
+    expect(screen.getByLabelText('Date of birth')).toBeInTheDocument()
+    expect(screen.getByLabelText('Channel')).toBeInTheDocument()
+    expect(screen.getByLabelText('Score')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Location select center' })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: 'Review' })).toBeInTheDocument()
+  })
+
+  it('submits valid values', async () => {
     const user = userEvent.setup()
     const onSubmit = vi.fn()
     render(<ChatUIRenderer frame={baseFrame} onSubmit={onSubmit} />)
@@ -94,10 +111,5 @@ describe('ChatUIRenderer', () => {
 
     expect(onSubmit).not.toHaveBeenCalled()
     expect(screen.getByText('Invalid selection.')).toBeInTheDocument()
-  })
-
-  it('renders stable structure snapshot', () => {
-    const { container } = render(<ChatUIRenderer frame={baseFrame} onSubmit={vi.fn()} />)
-    expect(container.firstChild).toMatchSnapshot()
   })
 })

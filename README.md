@@ -1,6 +1,6 @@
 # airforms-renderer (React) — v0
 
-A deterministic UI renderer for `ui_frame` messages defined by `@emergenesis/protocol`.
+A deterministic UI renderer for `ui_frame` messages defined by `@airforms/protocol`.
 
 This package renders structured UI inside a chat interface. It does **not** call LLMs, manage conversations, or execute tools. It strictly:
 
@@ -11,7 +11,7 @@ This package renders structured UI inside a chat interface. It does **not** call
 
 This is Layer 2 of the system:
 
-1. Protocol (`@emergenesis/protocol`)
+1. Protocol (`@airforms/protocol`)
 2. **Renderer (this package)**
 3. Orchestrator
 
@@ -52,13 +52,13 @@ Deterministic rendering only.
 # Installation
 
 ```bash
-npm install @emergenesis/renderer-react
+npm install @airforms/renderer-react
 ```
 
 Peer dependency:
 
 ```bash
-npm install @emergenesis/protocol
+npm install @airforms/protocol
 ```
 
 ---
@@ -66,8 +66,8 @@ npm install @emergenesis/protocol
 # Basic Usage
 
 ```tsx
-import { ChatUIRenderer } from "@emergenesis/renderer-react"
-import type { UiFrame } from "@emergenesis/protocol"
+import { ChatUIRenderer } from "@airforms/renderer-react"
+import type { UiFrame } from "@airforms/protocol"
 
 function ChatMessage({ frame }: { frame: UiFrame }) {
   return (
@@ -233,7 +233,7 @@ Those belong to future versions or higher layers.
 
 ## Goal
 
-Implement a deterministic React renderer for `ui_frame` as defined by `@emergenesis/protocol`.
+Implement a deterministic React renderer for `ui_frame` as defined by `@airforms/protocol`.
 
 ## Definition of Done
 

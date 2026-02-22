@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { ChatUIRenderer } from '../src/ChatUIRenderer'
@@ -37,8 +37,7 @@ describe('ChatUIRenderer', () => {
     await user.type(screen.getByLabelText('Policy number'), 'ABC123')
     await user.type(screen.getByLabelText('Date of birth'), '2000-01-01')
     await user.selectOptions(screen.getByLabelText('Channel'), 'email')
-    await user.clear(screen.getByLabelText('Score'))
-    await user.type(screen.getByLabelText('Score'), '8')
+    fireEvent.change(screen.getByLabelText('Score'), { target: { value: '8' } })
     await user.click(screen.getByRole('button', { name: 'Look up' }))
 
     expect(onSubmit).toHaveBeenCalledWith({

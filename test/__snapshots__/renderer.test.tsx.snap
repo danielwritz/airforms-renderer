@@ -1,0 +1,76 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ChatUIRenderer > renders stable structure snapshot 1`] = `
+<form
+  aria-label="Find your policy"
+>
+  <h2>
+    Find your policy
+  </h2>
+  <label>
+    <span>
+      Policy number
+    </span>
+    <input
+      aria-invalid="false"
+      type="text"
+      value=""
+    />
+  </label>
+  <label>
+    <span>
+      Date of birth
+    </span>
+    <input
+      aria-invalid="false"
+      type="date"
+      value=""
+    />
+  </label>
+  <label>
+    <span>
+      Channel
+    </span>
+    <select
+      aria-invalid="false"
+    >
+      <option
+        value=""
+      >
+        Select…
+      </option>
+      <option
+        value="email"
+      >
+        Email
+      </option>
+      <option
+        value="phone"
+      >
+        Phone
+      </option>
+    </select>
+  </label>
+  <label>
+    <span>
+      Score
+    </span>
+    <input
+      aria-invalid="false"
+      max="10"
+      min="0"
+      step="2"
+      type="range"
+      value="0"
+    />
+    <output>
+      0
+    </output>
+  </label>
+  <button
+    type="submit"
+  >
+    Look up
+  </button>
+</form>
+`;

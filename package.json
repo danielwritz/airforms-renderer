@@ -5,12 +5,16 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@airforms/ui-schema": "file:../airforms-ui-schema"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",

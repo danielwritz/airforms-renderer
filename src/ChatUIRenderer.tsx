@@ -58,11 +58,13 @@ export function ChatUIRenderer({ frame, onSubmit, onBack, onReplace, disabled }:
   )
 
   const handlePrimaryAction = () => {
-    const nextErrors = Object.fromEntries(
-      frame.components
-        .map((component) => [component.id, validateComponent(component, values[component.id])] as const)
-        .filter(([, error]) => Boolean(error))
-    )
+    const nextErrors = frame.components.reduce<Record<string, string>>((accumulator, component) => {
+      const error = validateComponent(component, values[component.id])
+      if (error) {
+        accumulator[component.id] = error
+      }
+      return accumulator
+    }, {})
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors)

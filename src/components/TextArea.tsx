@@ -1,7 +1,7 @@
-import type { TextComponent } from '../types'
+import type { TextareaComponent } from '../types'
 
 interface Props {
-  component: TextComponent
+  component: TextareaComponent
   value: string
   disabled?: boolean
   error?: string

@@ -1,7 +1,7 @@
-import type { TextComponent } from '../types'
+import type { DateComponent } from '../types'
 
 interface Props {
-  component: TextComponent
+  component: DateComponent
   value: string
   disabled?: boolean
   error?: string

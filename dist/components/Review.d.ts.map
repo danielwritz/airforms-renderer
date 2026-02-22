@@ -1,0 +1,1 @@
+{"version":3,"file":"Review.d.ts","sourceRoot":"","sources":["../../src/components/Review.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,UAAU,CAAA;AAE/C,UAAU,KAAK;IACb,SAAS,EAAE,eAAe,CAAA;IAC1B,MAAM,EAAE,MAAM,CAAC,MAAM,EAAE,OAAO,CAAC,CAAA;CAChC;AAED,wBAAgB,MAAM,CAAC,EAAE,SAAS,EAAE,MAAM,EAAE,EAAE,KAAK,2CAOlD"}

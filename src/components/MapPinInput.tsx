@@ -1,9 +1,4 @@
-import type { MapPinComponent } from '../types'
-
-export interface MapValue {
-  lat: number
-  lng: number
-}
+import type { MapPinComponent, MapValue } from '../types'
 
 interface Props {
   component: MapPinComponent

@@ -3,21 +3,24 @@ export type FieldValue = PrimitiveValue | Record<string, unknown>
 
 export interface BaseComponent {
   id: string
-  type: string
   label: string
   required?: boolean
 }
 
 export interface TextComponent extends BaseComponent {
-  type: 'text' | 'textarea' | 'date'
-  placeholder?: string
+  type: 'text'
+}
+
+export interface TextAreaComponent extends BaseComponent {
+  type: 'textarea'
+}
+
+export interface DateComponent extends BaseComponent {
+  type: 'date'
 }
 
 export interface NumberComponent extends BaseComponent {
   type: 'number'
-  min?: number
-  max?: number
-  step?: number
 }
 
 export interface SelectComponent extends BaseComponent {
@@ -29,7 +32,7 @@ export interface SliderComponent extends BaseComponent {
   type: 'slider'
   min: number
   max: number
-  step?: number
+  step: number
 }
 
 export interface MapPinComponent extends BaseComponent {
@@ -38,10 +41,13 @@ export interface MapPinComponent extends BaseComponent {
 
 export interface ReviewComponent extends BaseComponent {
   type: 'review'
+  source?: string
 }
 
 export type UiComponent =
   | TextComponent
+  | TextAreaComponent
+  | DateComponent
   | NumberComponent
   | SelectComponent
   | SliderComponent
@@ -52,11 +58,11 @@ export type UiAction = { type: 'ui_submit' } | { type: 'ui_back' } | { type: 'ui
 
 export interface UiFrame {
   type: 'ui_frame'
-  version: string
+  version: '1.0'
   frameId: string
-  title?: string
-  state?: {
-    values?: Record<string, FieldValue>
+  title: string
+  state: {
+    values: Record<string, FieldValue>
   }
   components: UiComponent[]
   primaryAction: {

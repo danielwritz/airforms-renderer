@@ -14,8 +14,6 @@ export function validateComponent(component: UiComponent, value: unknown): strin
   if (component.type === 'number' && hasValue(value)) {
     const num = Number(value)
     if (Number.isNaN(num)) return 'Must be a number.'
-    if (component.min != null && num < component.min) return `Must be greater than or equal to ${component.min}.`
-    if (component.max != null && num > component.max) return `Must be less than or equal to ${component.max}.`
   }
 
   if (component.type === 'select' && hasValue(value)) {
@@ -27,8 +25,7 @@ export function validateComponent(component: UiComponent, value: unknown): strin
     const num = Number(value)
     if (Number.isNaN(num)) return 'Must be a number.'
     if (num < component.min || num > component.max) return `Must be between ${component.min} and ${component.max}.`
-    const step = component.step ?? 1
-    const ratio = (num - component.min) / step
+    const ratio = (num - component.min) / component.step
     if (Math.abs(ratio - Math.round(ratio)) > 1e-8) return 'Invalid slider step.'
   }
 

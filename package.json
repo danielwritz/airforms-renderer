@@ -1,5 +1,5 @@
 {
-  "name": "@emergenesis/renderer-react",
+  "name": "@airforms/renderer-react",
   "version": "0.1.0",
   "description": "Deterministic UI renderer for protocol ui_frame messages",
   "main": "dist/index.js",

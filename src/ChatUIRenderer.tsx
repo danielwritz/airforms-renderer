@@ -19,7 +19,7 @@ export interface ChatUIRendererProps {
 }
 
 export function ChatUIRenderer({ frame, onSubmit, onBack, onReplace, disabled }: ChatUIRendererProps) {
-  const [values, setValues] = useState<Record<string, FieldValue>>(() => ({ ...(frame.state?.values ?? {}) }))
+  const [values, setValues] = useState<Record<string, FieldValue>>(() => ({ ...frame.state.values }))
   const [errors, setErrors] = useState<Record<string, string>>({})
 
   const renderedComponents = useMemo(
@@ -44,8 +44,7 @@ export function ChatUIRenderer({ frame, onSubmit, onBack, onReplace, disabled }:
           case 'select':
             return <SelectInput key={component.id} component={component} value={String(value ?? '')} disabled={disabled} error={error} onChange={update} />
           case 'slider': {
-            const fallback = typeof component.min === 'number' ? component.min : 0
-            return <SliderInput key={component.id} component={component} value={Number(value ?? fallback)} disabled={disabled} error={error} onChange={update} />
+            return <SliderInput key={component.id} component={component} value={Number(value ?? component.min)} disabled={disabled} error={error} onChange={update} />
           }
           case 'map_pin':
             return <MapPinInput key={component.id} component={component} value={(value as { lat: number; lng: number } | undefined) ?? undefined} disabled={disabled} error={error} onChange={update} />
@@ -89,13 +88,13 @@ export function ChatUIRenderer({ frame, onSubmit, onBack, onReplace, disabled }:
 
   return (
     <form
-      aria-label={frame.title ?? frame.frameId}
+      aria-label={frame.title}
       onSubmit={(event) => {
         event.preventDefault()
         handlePrimaryAction()
       }}
     >
-      {frame.title ? <h2>{frame.title}</h2> : null}
+      <h2>{frame.title}</h2>
       {renderedComponents}
       <button type="submit" disabled={disabled}>
         {frame.primaryAction.label}

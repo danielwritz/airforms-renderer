@@ -16,9 +16,6 @@ export function NumberInput({ component, value, disabled, error, onChange }: Pro
         type="number"
         value={value}
         disabled={disabled}
-        min={component.min}
-        max={component.max}
-        step={component.step}
         aria-invalid={Boolean(error)}
         onChange={(event) => onChange(event.target.value)}
       />

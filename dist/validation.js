@@ -5,7 +5,23 @@ const hasValue = (value) => {
         return value.trim().length > 0;
     return true;
 };
+const hasMapCoordinates = (value) => {
+    if (typeof value !== 'object' || value == null) {
+        return false;
+    }
+    const candidate = value;
+    return typeof candidate.lat === 'number' && Number.isFinite(candidate.lat) && typeof candidate.lng === 'number' && Number.isFinite(candidate.lng);
+};
 export function validateComponent(component, value) {
+    if (component.type === 'map_pin') {
+        if (component.required && !hasValue(value)) {
+            return 'This field is required.';
+        }
+        if (hasValue(value) && !hasMapCoordinates(value)) {
+            return 'Select a valid map location.';
+        }
+        return null;
+    }
     if (component.required && !hasValue(value)) {
         return 'This field is required.';
     }

@@ -1,3 +1,4 @@
+import 'leaflet/dist/leaflet.css';
 import type { MapPinComponent, MapValue } from '../types';
 interface Props {
     component: MapPinComponent;

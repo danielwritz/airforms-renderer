@@ -6,7 +6,28 @@ const hasValue = (value: unknown) => {
   return true
 }
 
+const hasMapCoordinates = (value: unknown): value is { lat: number; lng: number } => {
+  if (typeof value !== 'object' || value == null) {
+    return false
+  }
+
+  const candidate = value as { lat?: unknown; lng?: unknown }
+  return typeof candidate.lat === 'number' && Number.isFinite(candidate.lat) && typeof candidate.lng === 'number' && Number.isFinite(candidate.lng)
+}
+
 export function validateComponent(component: UiComponent, value: unknown): string | null {
+  if (component.type === 'map_pin') {
+    if (component.required && !hasValue(value)) {
+      return 'This field is required.'
+    }
+
+    if (hasValue(value) && !hasMapCoordinates(value)) {
+      return 'Select a valid map location.'
+    }
+
+    return null
+  }
+
   if (component.required && !hasValue(value)) {
     return 'This field is required.'
   }

@@ -157,11 +157,14 @@ No interpretation beyond schema rules.
 
 The `map_pin` component:
 
-* Displays a simple clickable map surface
+* Displays a visible map (OpenStreetMap tiles)
+* Supports pan + zoom
+* Supports click-to-select pin placement
+* Supports geolocation-based initial centering when available
+* Supports "Use map center" fallback selection
 * Emits `{ lat: number, lng: number }`
 * Rounds to 6 decimal places
-
-Advanced mapping libraries are not required in v0.
+* Includes OpenStreetMap attribution in the rendered map
 
 ---
 
